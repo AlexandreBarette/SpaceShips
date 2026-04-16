@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint code
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Run tests
+        run: npm test
+
+      - name: npm audit (security check)
+        run: npm audit
+        continue-on-error: true
+
+      - name: Build
+        run: npm run build
+      
+      - name: Test summary
+        if: always()
+        run: |
+          echo "## CI Results" >> $GITHUB_STEP_SUMMARY
+          echo "Lint executed (non-blocking)" >> $GITHUB_STEP_SUMMARY
+          echo "Tests executed" >> $GITHUB_STEP_SUMMARY
+          echo "Audit executed" >> $GITHUB_STEP_SUMMARY
+          echo "Build executed" >> $GITHUB_STEP_SUMMARY
+        
+      - name: Add annotation on failure
+        if: failure()
+        run: echo "::error title=Tests failed::Check test logs"
