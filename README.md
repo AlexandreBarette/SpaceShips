@@ -1,6 +1,6 @@
 # Two Ships Passing In The Night - DevOps Project
 
-## 📖 Description
+## Description
 
 This project is part of a DevOps course.
 The goal is to implement a complete CI/CD pipeline for a game made by independants developpers.
@@ -68,7 +68,7 @@ docker build -t spaceships .
 docker run -p 8080:80 spaceships
 ```
 
-👉 Then open: http://localhost:8080
+Then open: http://localhost:8080
 
 ---
 
