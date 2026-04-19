@@ -54,7 +54,7 @@ npm test
 
 ---
 
-## Run with Docker
+## Run with Docker (need Docker Desktop)
 
 ### Build image
 

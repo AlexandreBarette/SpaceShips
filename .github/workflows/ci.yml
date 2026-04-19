@@ -26,6 +26,9 @@ jobs:
         run: npm run lint
         continue-on-error: true
 
+      - name: Run Gitleaks scan (DevSecOps)
+        uses: gitleaks/gitleaks-action@v2
+
       - name: Run tests
         run: npm test
 
