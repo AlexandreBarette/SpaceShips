@@ -36,7 +36,7 @@ describe('entity system', () => {
 
     const result = findTarget(enemy, target);
 
-    expect(typeof result).toBe('boolean');
+    expect(result).toBe(true);
   });
 
   test('event system triggers listener', () => {
