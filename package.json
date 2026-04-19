@@ -8,9 +8,7 @@
     "build": "vite build",
     "serve": "vite preview",
     "test": "vitest",
-    "lint": "eslint src",
-	"build:gh": "vite build --base=/SpaceShips/",
-  	"build:docker": "vite build --base=/"
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",

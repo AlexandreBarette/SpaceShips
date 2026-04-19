@@ -34,7 +34,7 @@ jobs:
         continue-on-error: true
 
       - name: Build
-        run: npm run build
+        run: BASE_PATH=/SpaceShips/ npm run build
       
       - name: Test summary
         if: always()
