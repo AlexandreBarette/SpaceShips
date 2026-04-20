@@ -38,6 +38,16 @@ jobs:
 
       - name: Build
         run: BASE_PATH=/SpaceShips/ npm run build
+
+      - name: Build Docker image
+        run: docker build -t spaceships .
+
+      - name: Run Docker container
+        run: |
+          docker run -d -p 8080:80 --name spaceships_test spaceships
+          sleep 3
+          curl -f http://localhost:8080 || (docker logs spaceships_test && exit 1)
+          docker stop spaceships_test
       
       - name: Test summary
         if: always()
